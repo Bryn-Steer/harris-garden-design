@@ -1,9 +1,0 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/contact": "pages/contact.js",
-  "/project-grid-2-column": "pages/project-grid-2-column.js",
-  "/blog-standard": "pages/blog-standard.js",
-  "/blog-details-copy-6": "pages/blog-details-copy-6.js"
-}
