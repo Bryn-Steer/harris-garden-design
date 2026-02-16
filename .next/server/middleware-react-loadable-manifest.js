@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"pages/project-grid-2-column.jsx -> @/src/components/isotope/Project2GridIsotope\":{\"id\":\"pages/project-grid-2-column.jsx -> @/src/components/isotope/Project2GridIsotope\",\"files\":[\"static/chunks/src_components_isotope_Project2GridIsotope_js.js\"]}}"
