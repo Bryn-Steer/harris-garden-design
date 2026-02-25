@@ -23,7 +23,7 @@ const ServiceDetails = () => {
                     alt="Service Image"
                   />
                 </div>
-                <h3>How to Benefit</h3>
+                <h3>How we can help you</h3>
                 <p>
                   From the first site visit, our driveway process is led by clarity and precision. We assess levels, drainage, access, and visual impact before a single decision is made. Ensuring the finished driveway feels intentional, proportionate, and built to last.
                 </p>
@@ -79,9 +79,7 @@ const ServiceDetails = () => {
                   <div className="row">
                     <div className="col-sm-4">
                       <div className="process-step-item text-center mb-50">
-                        <div className="icon">
-                          <i className="flaticon-landscape" />
-                        </div>
+                        
                         <div className="text">
                           <h6>Private Consultation</h6>
                           <p>We assess your site, usage needs, and aesthetic preferences in detail.</p>
@@ -90,9 +88,7 @@ const ServiceDetails = () => {
                     </div>
                     <div className="col-sm-4">
                       <div className="process-step-item text-center mb-50">
-                        <div className="icon">
-                          <i className="flaticon-industry" />
-                        </div>
+                        
                         <div className="text">
                           <h6>Design &amp; Specification</h6>
                           <p>Layouts, materials, and construction details are developed to suit your home and lifestyle.</p>
@@ -101,9 +97,7 @@ const ServiceDetails = () => {
                     </div>
                     <div className="col-sm-4">
                       <div className="process-step-item text-center mb-50">
-                        <div className="icon">
-                          <i className="flaticon-bus-stop" />
-                        </div>
+                        
                         <div className="text">
                           <h6>Client Approval</h6>
                           <p>Final plans are refined with your input before construction begins.</p>
@@ -163,10 +157,6 @@ const ServiceDetails = () => {
                     <Link legacyBehavior href="/contact">
                       <a className="main-btn secondary-btn">Contact Us</a>
                     </Link>
-                    <img
-                      src="assets/images/sidebar/b-w-1.png"
-                      alt="Banner Image"
-                    />
                   </div>
                 </div>
                 <div className="sidebar-widget widget-newsletter gray-bg mb-30 wow fadeInUp">

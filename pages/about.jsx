@@ -46,24 +46,24 @@ const About = () => {
             </div>
           </div>
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-md-6 col-sm-6">
-              {/*====== About Image Item ======*/}
+            {/*======<div className="col-lg-4 col-md-6 col-sm-6">
+              {/*====== About Image Item 
               <div className="about-img-item mb-30 wow fadeInUp">
-                <img src="assets/images/about/about-3.jpg" alt="About Image" />
+                <img src="assets/images/about/about-2.jpg" alt="About Image" />
               </div>
             </div>
             <div className="col-lg-4 col-md-6 col-sm-6">
-              {/*====== About Image Item ======*/}
+              {/*====== About Image Item 
               <div className="about-img-item mb-30 wow fadeInDown">
-                <img src="assets/images/about/about-4.jpg" alt="About Image" />
+                <img src="assets/images/blog/blog-13.png" alt="About Image" />
               </div>
             </div>
             <div className="col-lg-4 col-md-6 col-sm-6">
-              {/*====== About Image Item ======*/}
+              {/*====== About Image Item 
               <div className="about-img-item mb-30 wow fadeInUp">
-                <img src="assets/images/about/about-5.jpg" alt="About Image" />
+                <img src="assets/images/features/features-1.jpg" alt="About Image" />
               </div>
-            </div>
+            </div> ======*/}
           </div>
           <div className="row justify-content-center">
             <div className="col-lg-10">
@@ -146,7 +146,7 @@ const About = () => {
           <div
             className="features-bg bg_cover"
             style={{
-              backgroundImage: "url(assets/images/bg/features-bg-1.jpg)",
+              backgroundImage: "url(assets/images/bg/choose-bg-1.jpg)",
             }}
           />
           <div className="features-bgc-content-box main-bg text-white wow fadeInRight">
@@ -163,10 +163,7 @@ const About = () => {
                 Our designs are driven by purpose. We don’t chase trends - we listen to your needs and the site’s conditions, then translate them into timeless, usable gardens. Whether you favour bold, modern lines or soft, naturalistic planting, we build a design language that resonates with your lifestyle.
               </p>
               <div className="single-features-item mb-30 wow fadeInDown">
-                <div className="icon">
-                  <i className="flaticon-pruning-shears" />
-                  <span className="shape-circle" />
-                </div>
+              
                 <div className="text">
                   <h5 className="title">Interview &amp; Material Samples</h5>
                   <p>
@@ -175,10 +172,7 @@ const About = () => {
                 </div>
               </div>
               <div className="single-features-item mb-30 wow fadeInUp">
-                <div className="icon">
-                  <i className="flaticon-gardening-1" />
-                  <span className="shape-circle" />
-                </div>
+                
                 <div className="text">
                   <h5 className="title">Design Process &amp; Review</h5>
                   <p>
@@ -317,6 +311,12 @@ const About = () => {
             <div className="single-testimonial-item">
               <div className="testimonial-inner-content">
                 <div className="quote-rating-box">
+                  <div className="icon">
+                    <img
+                      src="assets/images/testimonial/quote.png"
+                      alt="quote icon"
+                    />
+                  </div>
                   <div className="ratings-box">
                     <h6>Excellent Services</h6>
                     <ul className="ratings">

@@ -8349,3 +8349,21 @@ ul.slick-dots li.slick-active {
 .main-menu ul li .sub-menu li a:focus {
   color: #ddd !important;
 }
+
+.sub-title:before,
+.sub-title::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* HARD OVERRIDE: Footer link hover should NOT go green */
+footer.footer-area a:hover,
+footer.footer-area a:focus,
+footer.footer-area a:active,
+footer.footer-area .footer-nav li a:hover,
+footer.footer-area .footer-nav li a:focus,
+footer.footer-area .copyright-nav a:hover,
+footer.footer-area .copyright-nav a:focus {
+  color: #e6e6e6a1 !important;
+  background: transparent !important;
+}

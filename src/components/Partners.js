@@ -3,8 +3,8 @@ import { sliderProps } from "../sliderProps";
 const Partners = () => {
   return (
     <section className="partners-section">
-      <div className="container">
-        {/*=== Partners Slider ===*/}
+      {/*===<div className="container">
+        {/*=== Partners Slider 
         <Slider
           {...sliderProps.partnerSliderOne}
           className="partner-slider-one pt-80 pb-70 border-top-1 wow fadeInDown"
@@ -70,7 +70,7 @@ const Partners = () => {
             </div>
           </div>
         </Slider>
-      </div>
+      </div>===*/}
     </section>
   );
 };

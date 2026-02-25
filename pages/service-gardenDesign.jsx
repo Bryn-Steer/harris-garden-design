@@ -23,7 +23,7 @@ const ServiceDetails = () => {
                     alt="Service Image"
                   />
                 </div>
-                <h3>How to Benefit</h3>
+                <h3>How we can help you</h3>
                 <p>
                   From the moment you say “yes” to exploring your garden’s potential, our design stage sets the tone: we listen carefully, sketch boldly, and refine precisely - so what you see on paper feels like it was always meant to be there in real life.
                 </p>
@@ -65,11 +65,7 @@ const ServiceDetails = () => {
                 </div>
                 <h3>Working Process</h3>
                 <p>
-                  On the other hand, we denounce with righteous indignation and
-                  dislike men who are so beguiled and demoralized by the charms
-                  of pleasure of the moment, so blinded by desire, that they
-                  cannot foresee the pain and trouble that are bound to ensue
-                  and equal blame belongs
+                  Garden design is a collaborative process. We work closely with you to understand your vision, needs, and lifestyle - translating that into a design that’s uniquely yours. Our process is transparent and inclusive, ensuring you feel confident and excited every step of the way.
                 </p>
                 <div className="process-wrapper p-r z-1 wow fadeInUp">
                   <div className="shape line-shape">
@@ -83,9 +79,9 @@ const ServiceDetails = () => {
                   <div className="row">
                     <div className="col-sm-4">
                       <div className="process-step-item text-center mb-50">
-                        <div className="icon">
+                        {/*======<div className="icon">
                           <i className="flaticon-landscape" />
-                        </div>
+                        </div>======*/}
                         <div className="text">
                           <h6>Private Consultation</h6>
                           <p>Here we discuss your aspirations, constraints and desired usage.</p>
@@ -94,9 +90,9 @@ const ServiceDetails = () => {
                     </div>
                     <div className="col-sm-4">
                       <div className="process-step-item text-center mb-50">
-                        <div className="icon">
+                        {/*======<div className="icon">
                           <i className="flaticon-industry" />
-                        </div>
+                        </div>======*/}
                         <div className="text">
                           <h6>Sketches &amp; Design</h6>
                           <p>Early ideas and plans are developed, developing it into detailed drawings and virtual designs</p>
@@ -105,9 +101,9 @@ const ServiceDetails = () => {
                     </div>
                     <div className="col-sm-4">
                       <div className="process-step-item text-center mb-50">
-                        <div className="icon">
+                        {/*======<div className="icon">
                           <i className="flaticon-bus-stop" />
-                        </div>
+                        </div>======*/}
                         <div className="text">
                           <h6>Client Approval</h6>
                           <p>We gather your feedback and adjust designs until perfect, ready to build!</p>
@@ -167,10 +163,6 @@ const ServiceDetails = () => {
                     <Link legacyBehavior href="/contact">
                       <a className="main-btn secondary-btn">Contact Us</a>
                     </Link>
-                    <img
-                      src="assets/images/sidebar/b-w-1.png"
-                      alt="Banner Image"
-                    />
                   </div>
                 </div>
                 <div className="sidebar-widget widget-newsletter gray-bg mb-30 wow fadeInUp">

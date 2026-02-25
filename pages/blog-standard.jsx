@@ -429,10 +429,6 @@ const BlogStandard = () => {
                     <Link legacyBehavior href="/contact">
                       <a className="main-btn secondary-btn">Contact Us</a>
                     </Link>
-                    <img
-                      src="assets/images/sidebar/b-w-1.png"
-                      alt="Banner Image"
-                    />
                   </div>
                 </div>
                 <div className="sidebar-widget widget-newsletter gray-bg mb-30 wow fadeInUp">

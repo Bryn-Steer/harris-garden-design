@@ -112,8 +112,8 @@ const Project2GridIsotope = () => {
           </div>
         </div>
         <div className="row gallery-active">
-          <div className="col-md-6 item cat-1 cat-3 cat-6">
-            {/*====== Single Gallery Item ======*/}
+          {/*======<div className="col-md-6 item cat-1 cat-3 cat-6">
+            {/*====== Single Gallery Item 
             <div className="single-project-item mb-30 wow fadeInLeft">
               <div className="project-img">
                 <img
@@ -141,7 +141,7 @@ const Project2GridIsotope = () => {
             </div>
           </div>
           <div className="col-md-6 item cat-1 cat-3 cat-7">
-            {/*====== Single Gallery Item ======*/}
+            {/*====== Single Gallery Item 
             <div className="single-project-item mb-30 wow fadeInRight">
               <div className="project-img">
                 <img
@@ -169,7 +169,7 @@ const Project2GridIsotope = () => {
             </div>
           </div>
           <div className="col-md-6 item cat-1 cat-6">
-            {/*====== Single Gallery Item ======*/}
+            {/*====== Single Gallery Item 
             <div className="single-project-item mb-30 wow fadeInDown">
               <div className="project-img">
                 <img
@@ -197,7 +197,7 @@ const Project2GridIsotope = () => {
             </div>
           </div>
           <div className="col-md-6 item cat-1 cat-3 cat-6">
-            {/*====== Single Gallery Item ======*/}
+            {/*====== Single Gallery Item 
             <div className="single-project-item mb-30 wow fadeInUp">
               <div className="project-img">
                 <img
@@ -225,7 +225,7 @@ const Project2GridIsotope = () => {
             </div>
           </div>
           <div className="col-md-6 item cat-1 cat-3 cat-6">
-            {/*====== Single Gallery Item ======*/}
+            {/*====== Single Gallery Item 
             <div className="single-project-item mb-30 wow fadeInUp">
               <div className="project-img">
                 <img
@@ -251,7 +251,7 @@ const Project2GridIsotope = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div>======*/}
         </div>
       </div>
     </section>

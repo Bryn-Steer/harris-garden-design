@@ -23,7 +23,7 @@ const ServiceDetails = () => {
                     alt="Service Image"
                   />
                 </div>
-                <h3>How to Benefit</h3>
+                <h3>How we can help you</h3>
                 <p>
                   Our landscaping service is comprehensive. We don’t just deliver one part - we manage everything from groundwork to finishing touches, ensuring seamless execution and cohesive aesthetics.
                 </p>
@@ -79,9 +79,7 @@ const ServiceDetails = () => {
                   <div className="row">
                     <div className="col-sm-4">
                       <div className="process-step-item text-center mb-50">
-                        <div className="icon">
-                          <i className="flaticon-landscape" />
-                        </div>
+                        
                         <div className="text">
                           <h6>Private Consultation</h6>
                           <p>Here we discuss your aspirations, constraints and desired usage.</p>
@@ -90,9 +88,7 @@ const ServiceDetails = () => {
                     </div>
                     <div className="col-sm-4">
                       <div className="process-step-item text-center mb-50">
-                        <div className="icon">
-                          <i className="flaticon-industry" />
-                        </div>
+                        
                         <div className="text">
                           <h6>Sketches &amp; Design</h6>
                           <p>Early ideas and plans are developed, developing it into detailed drawings and virtual designs</p>
@@ -101,9 +97,7 @@ const ServiceDetails = () => {
                     </div>
                     <div className="col-sm-4">
                       <div className="process-step-item text-center mb-50">
-                        <div className="icon">
-                          <i className="flaticon-bus-stop" />
-                        </div>
+                        
                         <div className="text">
                           <h6>Build &amp; Execution</h6>
                           <p>Our skilled team takes care of excavation, construction, planting, and finishing.</p>
@@ -163,10 +157,6 @@ const ServiceDetails = () => {
                     <Link legacyBehavior href="/contact">
                       <a className="main-btn secondary-btn">Contact Us</a>
                     </Link>
-                    <img
-                      src="assets/images/sidebar/b-w-1.png"
-                      alt="Banner Image"
-                    />
                   </div>
                 </div>
                 <div className="sidebar-widget widget-newsletter gray-bg mb-30 wow fadeInUp">

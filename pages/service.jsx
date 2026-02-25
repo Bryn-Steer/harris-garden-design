@@ -26,12 +26,7 @@ const Service = () => {
                       <Link legacyBehavior href="/service-gardenDesign">
                         <a className="text-decoration-none">
                           <div className="fancy-icon-box-two mb-30 wow fadeInUp">
-                            <div className="shape icon-shape">
-                              <i className="flaticon-landscape-1" />
-                            </div>
-                            <div className="icon">
-                              <i className="flaticon-landscape-1" />
-                            </div>
+                            
                             <div className="text">
                               <h5 className="title">
                                 <Link legacyBehavior href="/service-gardenDesign">
@@ -50,12 +45,7 @@ const Service = () => {
                       <Link legacyBehavior href="/service-walls-turfing">
                         <a className="text-decoration-none">
                           <div className="fancy-icon-box-two mb-30 wow fadeInDown">
-                            <div className="shape icon-shape">
-                              <i className="flaticon-spider-plant" />
-                            </div>
-                            <div className="icon">
-                              <i className="flaticon-spider-plant" />
-                            </div>
+                            
                             <div className="text">
                               <h5 className="title">
                                 <Link legacyBehavior href="/service-walls-turfing">
@@ -77,7 +67,7 @@ const Service = () => {
             <div className="col-xl-6 col-lg-12">
               <div className="features-two_image-box p-r z-1 text-center pr-lg-60 mb-50 wow fadeInRight">
                 <img
-                  src="assets/images/features/features-5.jpg"
+                  src="assets/images/service/big2.jpg"
                   className="mt-50"
                   alt="features image"
                 />

@@ -254,7 +254,7 @@ const Contact = () => {
       </section>
       {/*====== End Contact section ======*/}
 
-      {/*====== Start Info Section ======*/}
+      {/*====== Start Info Section 
       <section className="info-section pb-60">
         <div className="container">
           <div className="row justify-content-center">

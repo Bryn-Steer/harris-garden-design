@@ -49,7 +49,7 @@ const Index2 = () => {
                         </Link>
                         <Link legacyBehavior href="/contact">
                           <a className="main-btn filled-btn filled-white mb-10">
-                            Book a Private Call
+                            Book a Call
                           </a>
                         </Link>
                       </div>
@@ -116,14 +116,14 @@ const Index2 = () => {
                   </div>
                   <div className="col-xl-6 col-lg-4">
                     {/*====== Hero Play ======*/}
-                    <div className="hero-play float-lg-right">
+                    {/*======<div className="hero-play float-lg-right">
                       <a
                         href="https://www.youtube.com/watch?v=1OgdblydUq0"
                         className="video-popup"
                       >
                         <i className="fas fa-play" />
                       </a>
-                    </div>
+                    </div>======*/}
                   </div>
                 </div>
               </div>
@@ -150,9 +150,6 @@ const Index2 = () => {
                     />
                   </div>
                   <div className="content">
-                    <div className="icon">
-                      <i className="flaticon-watering-plants" />
-                    </div>
                     <h5 className="title">Garden Design</h5>
                     <a href="/service-gardenDesign" className="icon-btn">
                       <i className="far fa-long-arrow-right" />
@@ -175,9 +172,6 @@ const Index2 = () => {
                     />
                   </div>
                   <div className="content">
-                    <div className="icon">
-                      <i className="flaticon-shovels" />
-                    </div>
                     <h5 className="title">Landscaping</h5>
                     <a href="service-walls-turfing" className="icon-btn">
                       <i className="far fa-long-arrow-right" />
@@ -200,9 +194,6 @@ const Index2 = () => {
                     />
                   </div>
                   <div className="content">
-                    <div className="icon">
-                      <i className="flaticon-gardening" />
-                    </div>
                     <h5 className="title">Driveways</h5>
                     <a href="service-driveways" className="icon-btn">
                       <i className="far fa-long-arrow-right" />
@@ -245,16 +236,7 @@ const Index2 = () => {
                         {/*====== Choose Tab  ======*/}
                         <div className="choose-nav-tab">
                           <Nav as={"ul"} className="nav">
-                            <li className="nav-item">
-                              <Nav.Link
-                                as="button"
-                                className="nav-link"
-                                data-toggle="tab"
-                                eventKey="tab1"
-                              >
-                                Defining Us
-                              </Nav.Link>
-                            </li>
+                            
                             <li className="nav-item">
                               <Nav.Link
                                 as="button"
@@ -376,7 +358,7 @@ const Index2 = () => {
                 />
                 <div className="experience-item">
                   <h2 className="number">
-                    <Counter end={15} />+
+                    <Counter end={10} />+
                   </h2>
                   <h4>Years Of Design</h4>
                 </div>
@@ -435,9 +417,6 @@ const Index2 = () => {
                 <div className="single-process-item">
                   <div className="inner-process-item">
                     <div className="step">Step 01</div>
-                    <div className="icon">
-                      <i className="flaticon-landscape" />
-                    </div>
                     <div className="text">
                       <h4 className="title">Consultation</h4>
                       <p>We listen to your ideas, goals, and requirements to shape a vision for your space.</p>
@@ -451,9 +430,6 @@ const Index2 = () => {
                 <div className="single-process-item">
                   <div className="inner-process-item">
                     <div className="step">Step 02</div>
-                    <div className="icon">
-                      <i className="flaticon-industry" />
-                    </div>
                     <div className="text">
                       <h4 className="title">Design &amp; presentation</h4>
                       <p>Creative concepts are developed and presented so you can see how your garden will take shape.</p>
@@ -467,9 +443,6 @@ const Index2 = () => {
                 <div className="single-process-item">
                   <div className="inner-process-item">
                     <div className="step">Step 03</div>
-                    <div className="icon">
-                      <i className="flaticon-industry" />
-                    </div>
                     <div className="text">
                       <h4 className="title">Preperation &amp; Build</h4>
                       <p>Our skilled team handles everything, from groundwork to construction, delivering your project with precision.</p>
@@ -483,9 +456,6 @@ const Index2 = () => {
                 <div className="single-process-item">
                   <div className="inner-process-item">
                     <div className="step">Step 04</div>
-                    <div className="icon">
-                      <i className="flaticon-bus-stop" />
-                    </div>
                     <div className="text">
                       <h4 className="title">Sign Off &amp; Aftercare</h4>
                       <p>Once complete, we make sure you’re 100% happy, providing aftercare package &amp; advice to keep your garden looking its best.</p>
@@ -499,12 +469,12 @@ const Index2 = () => {
         </div>
       </section>
       {/*====== End Working Process Section ======*/}
-      {/*====== Start Gallery Section ======*/}
+      {/*====== Start Gallery Section 
       <section className="gallery-section-minus p-r z-2">
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
-              {/*====== Section Title ======*/}
+              {/*====== Section Title 
               <div className="section-title mb-50 pr-lg-70 wow fadeInLeft">
                 <span className="sub-title">
                   <i className="flaticon-plant" />
@@ -514,7 +484,7 @@ const Index2 = () => {
               </div>
             </div>
             <div className="col-lg-6">
-              {/*====== Project Content Box ======*/}
+              {/*====== Project Content Box 
               <div className="project-content-box mb-50 pl-lg-100 wow fadeInRight">
                 <p className="mb-35">
                   Every garden we design tells its own story. From contemporary courtyards to large family spaces, our portfolio showcases the diversity of projects we’ve delivered and the pride we take in every finish. Our projects highlight the creativity of our designs, the quality of our materials, and the expertise of our team.
@@ -531,7 +501,7 @@ const Index2 = () => {
           {...sliderProps.projectsSliderOne}
           className="projects-slider-one wow fadeInDown"
         >
-          {/*====== Single Gallery Item ======*/}
+          {/*====== Single Gallery Item 
           <div className="single-project-item">
             <div className="project-img">
               <img src="assets/images/gallery/gl-1.jpg" alt="Gallery Image" />
@@ -552,7 +522,7 @@ const Index2 = () => {
               </div>
             </div>
           </div>
-          {/*====== Single Gallery Item ======*/}
+          {/*====== Single Gallery Item 
           <div className="single-project-item">
             <div className="project-img">
               <img src="assets/images/gallery/gl-2.jpg" alt="Gallery Image" />
@@ -573,7 +543,7 @@ const Index2 = () => {
               </div>
             </div>
           </div>
-          {/*====== Single Gallery Item ======*/}
+          {/*====== Single Gallery Item 
           <div className="single-project-item">
             <div className="project-img">
               <img src="assets/images/gallery/gl-3.jpg" alt="Gallery Image" />
@@ -594,7 +564,7 @@ const Index2 = () => {
               </div>
             </div>
           </div>
-          {/*====== Single Gallery Item ======*/}
+          {/*====== Single Gallery Item 
           <div className="single-project-item">
             <div className="project-img">
               <img src="assets/images/gallery/pic1.jpg" alt="Gallery Image" />
@@ -615,7 +585,7 @@ const Index2 = () => {
               </div>
             </div>
           </div>
-          {/*====== Single Gallery Item ======*/}
+          {/*====== Single Gallery Item 
           <div className="single-project-item">
             <div className="project-img">
               <img src="assets/images/gallery/pic2.jpg" alt="Gallery Image" />
@@ -636,7 +606,7 @@ const Index2 = () => {
               </div>
             </div>
           </div>
-          {/*====== Single Gallery Item ======*/}
+          {/*====== Single Gallery Item 
           <div className="single-project-item">
             <div className="project-img">
               <img src="assets/images/gallery/pic3.jpg" alt="Gallery Image" />
@@ -657,7 +627,7 @@ const Index2 = () => {
               </div>
             </div>
           </div>
-          {/*====== Single Gallery Item ======*/}
+          {/*====== Single Gallery Item 
           <div className="single-project-item">
             <div className="project-img">
               <img src="assets/images/gallery/pic4.jpg" alt="Gallery Image" />
@@ -678,7 +648,7 @@ const Index2 = () => {
               </div>
             </div>
           </div>
-          {/*====== Single Gallery Item ======*/}
+          {/*====== Single Gallery Item 
           <div className="single-project-item">
             <div className="project-img">
               <img src="assets/images/gallery/pic5.jpg" alt="Gallery Image" />
@@ -701,8 +671,8 @@ const Index2 = () => {
           </div>
         </Slider>
       </section>
-      {/*====== End Gallery Section ======*/}
-      {/*====== Start Counter Section  ======*/}
+      {/*====== End Gallery Section 
+      {/*====== Start Counter Section  
       <section className="fact-bg-section p-r z-1 main-bg pb-160">
         <div className="circle-wrapper">
           <span />
@@ -712,7 +682,7 @@ const Index2 = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-3 col-md-6 col-sm-6 single-counter-column">
-              {/*====== Counter Item  ======*/}
+              {/*====== Counter Item  
               <div
                 className="single-counter-item mb-30 wow fadeInDown"
                 data-wow-delay=".2s"
@@ -727,7 +697,7 @@ const Index2 = () => {
               </div>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-6 single-counter-column">
-              {/*====== Counter Item  ======*/}
+              {/*====== Counter Item  
               <div
                 className="single-counter-item mb-30 wow fadeInUp"
                 data-wow-delay=".25s"
@@ -742,7 +712,7 @@ const Index2 = () => {
               </div>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-6 single-counter-column">
-              {/*====== Counter Item  ======*/}
+              {/*====== Counter Item  
               <div
                 className="single-counter-item mb-30 wow fadeInDown"
                 data-wow-delay=".3s"
@@ -757,7 +727,7 @@ const Index2 = () => {
               </div>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-6 single-counter-column">
-              {/*====== Counter Item  ======*/}
+              {/*====== Counter Item  
               <div
                 className="single-counter-item mb-30 wow fadeInUp"
                 data-wow-delay=".35s"
@@ -805,9 +775,6 @@ const Index2 = () => {
                   <div className="col-lg-6">
                     {/*====== Fancy Icon Box ======*/}
                     <div className="fancy-icon-box">
-                      <div className="icon">
-                        <i className="flaticon-pruning-shears" />
-                      </div>
                       <div className="text">
                         <h5 className="title">
                           Design &amp; Visualisation
@@ -819,9 +786,6 @@ const Index2 = () => {
                   <div className="col-lg-6">
                     {/*====== Fancy Icon Box ======*/}
                     <div className="fancy-icon-box">
-                      <div className="icon">
-                        <i className="flaticon-gardening-1" />
-                      </div>
                       <div className="text">
                         <h5 className="title">
                           Build &amp; Craftsmanship
@@ -861,6 +825,12 @@ const Index2 = () => {
             <div className="single-testimonial-item">
               <div className="testimonial-inner-content">
                 <div className="quote-rating-box">
+                  <div className="icon">
+                    <img
+                      src="assets/images/testimonial/quote.png"
+                      alt="quote icon"
+                    />
+                  </div>
                   <div className="ratings-box">
                     <h6>Excellent Services</h6>
                     <ul className="ratings">
@@ -1066,9 +1036,9 @@ const Index2 = () => {
               <div className="section-title text-center mb-50 wow fadeInDown">
                 <span className="sub-title">
                   <i className="flaticon-plant" />
-                  News &amp; Blog
+                  Articles
                 </span>
-                <h2>Read Latest News &amp; Blog</h2>
+                <h2>Latest News</h2>
               </div>
             </div>
           </div>
@@ -1081,7 +1051,7 @@ const Index2 = () => {
               >
                 <div className="post-thumbnail">
                   <img
-                    src="assets/images/blog/blog-1.jpg"
+                    src="assets/images/blog/blog-7.jpg"
                     alt="Post Thumbnail"
                   />
                 </div>
@@ -1134,7 +1104,7 @@ const Index2 = () => {
               >
                 <div className="post-thumbnail">
                   <img
-                    src="assets/images/blog/blog-2.jpg"
+                    src="assets/images/blog/blog-8.jpg"
                     alt="Post Thumbnail"
                   />
                 </div>
@@ -1187,7 +1157,7 @@ const Index2 = () => {
               >
                 <div className="post-thumbnail">
                   <img
-                    src="assets/images/blog/blog-3.jpg"
+                    src="assets/images/blog/blog-10.jpg"
                     alt="Post Thumbnail"
                   />
                 </div>

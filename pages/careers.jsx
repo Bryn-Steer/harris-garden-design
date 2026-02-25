@@ -165,7 +165,7 @@ const Contact = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-4 col-md-6">
-              {/*====== Single Info Item ======*/}
+              {/*====== Single Info Item 
               <div className="single-info-item style-one mb-40 wow fadeInUp">
                 <div className="shape shape-one">
                   <span>
@@ -187,7 +187,7 @@ const Contact = () => {
               </div>
             </div>
             <div className="col-xl-4 col-md-6">
-              {/*====== Single Info Item ======*/}
+              {/*====== Single Info Item 
               <div className="single-info-item style-two mb-40 wow fadeInDown">
                 <div className="shape shape-one">
                   <span>
@@ -209,7 +209,7 @@ const Contact = () => {
               </div>
             </div>
             <div className="col-xl-4 col-md-6">
-              {/*====== Single Info Item ======*/}
+              {/*====== Single Info Item 
               <div className="single-info-item style-three mb-40 wow fadeInUp">
                 <div className="shape shape-one">
                   <span>
@@ -228,7 +228,7 @@ const Contact = () => {
                     <a className="main-btn primary-btn">Contact Us</a>
                   </Link>
                 </div>
-              </div>
+              </div>======*/}
             </div>
           </div>
         </div>
