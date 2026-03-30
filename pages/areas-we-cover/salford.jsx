@@ -1,182 +1,39 @@
-import { useEffect, useMemo, useState } from "react";
-import Head from "next/head";
 import Counter from "@/src/components/Counter";
 import Layout from "@/src/layouts/Layout";
 import { sliderProps } from "@/src/sliderProps";
 import Link from "next/link";
 import { Nav, Tab } from "react-bootstrap";
 import Slider from "react-slick";
-import locations from "@/src/data/locations";
-
-const DEFAULT_LOCATION_SLUG = "Greater Manchester";
-
-const toRadians = (value) => (value * Math.PI) / 180;
-
-const getDistanceMiles = (lat1, lng1, lat2, lng2) => {
-  const earthRadiusMiles = 3958.8;
-  const dLat = toRadians(lat2 - lat1);
-  const dLng = toRadians(lng2 - lng1);
-
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(toRadians(lat1)) *
-      Math.cos(toRadians(lat2)) *
-      Math.sin(dLng / 2) *
-      Math.sin(dLng / 2);
-
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return earthRadiusMiles * c;
-};
-
-const getNearestLocationSlug = (userLat, userLng) => {
-  let nearestSlug = DEFAULT_LOCATION_SLUG;
-  let nearestDistance = Infinity;
-
-  Object.entries(locations).forEach(([slug, area]) => {
-    if (
-      typeof area?.coords?.lat !== "number" ||
-      typeof area?.coords?.lng !== "number"
-    ) {
-      return;
-    }
-
-    const distance = getDistanceMiles(
-      userLat,
-      userLng,
-      area.coords.lat,
-      area.coords.lng
-    );
-
-    if (distance < nearestDistance) {
-      nearestDistance = distance;
-      nearestSlug = slug;
-    }
-  });
-
-  return nearestSlug;
-};
-
-const featuredProjects = [
-  {
-    title: "Contemporary Garden Build",
-    category: "Design & Build",
-    image: "assets/images/gallery/gl-1.jpg",
-    link: "/project-details",
-  },
-  {
-    title: "Luxury Porcelain Patio",
-    category: "Premium Paving",
-    image: "assets/images/gallery/gl-2.jpg",
-    link: "/project-details",
-  },
-  {
-    title: "Family Garden Transformation",
-    category: "Landscaping",
-    image: "assets/images/gallery/gl-3.jpg",
-    link: "/project-details",
-  },
-];
-
+import Head from "next/head";
 const Index2 = () => {
-  const [activeLocationSlug, setActiveLocationSlug] = useState(
-    DEFAULT_LOCATION_SLUG
-  );
-  const [locationSource, setLocationSource] = useState("default");
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const savedLocation = window.sessionStorage.getItem("nearestLocationSlug");
-
-    if (savedLocation && locations[savedLocation]) {
-      setActiveLocationSlug(savedLocation);
-      setLocationSource("session");
-    }
-
-    const runLocationFlow = async () => {
-      try {
-        const ipRes = await fetch("/api/detect-location");
-
-        if (ipRes.ok) {
-          const ipData = await ipRes.json();
-
-          if (
-            typeof ipData?.lat === "number" &&
-            typeof ipData?.lng === "number"
-          ) {
-            const ipSlug = getNearestLocationSlug(ipData.lat, ipData.lng);
-            setActiveLocationSlug(ipSlug);
-            setLocationSource("ip");
-            window.sessionStorage.setItem("nearestLocationSlug", ipSlug);
-          }
-        }
-      } catch (error) {
-        console.error("IP location lookup failed:", error);
-      }
-
-      if (!navigator.geolocation) return;
-
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const geoSlug = getNearestLocationSlug(
-            position.coords.latitude,
-            position.coords.longitude
-          );
-
-          setActiveLocationSlug(geoSlug);
-          setLocationSource("browser");
-          window.sessionStorage.setItem("nearestLocationSlug", geoSlug);
-        },
-        (error) => {
-          console.warn("Browser geolocation failed or was denied:", error);
-        },
-        {
-          enableHighAccuracy: false,
-          timeout: 8000,
-          maximumAge: 3600000,
-        }
-      );
-    };
-
-    runLocationFlow();
-  }, []);
-
-  const activeLocation = useMemo(() => {
-    return locations[activeLocationSlug] || locations[DEFAULT_LOCATION_SLUG];
-  }, [activeLocationSlug]);
-
-  const heroTitle = activeLocation?.name
-    ? `Timeless Spaces in ${activeLocation.name}`
-    : "Timeless Spaces";
-
-  const heroSubtext = activeLocation?.description
-    ? activeLocation.description
-    : "Premium garden design and landscaping across Greater Manchester, Cheshire and Lancashire.";
-
   return (
     <Layout>
       <Head>
-        <title>Harris Garden Design & Landscaping</title>
+        <title>Garden Design & Landscaping in Salford | Harris Garden Design</title>
         <meta
           name="description"
-          content="Premium garden design and landscaping across Greater Manchester, Cheshire and Lancashire."
+          content="Harris Garden Design provides premium garden design and landscaping services in Salford, creating timeless outdoor spaces tailored to each property."
         />
       </Head>
-
       {/*====== Start Banner Section ======*/}
       <section className="banner-section">
+        {/*====== Hero Wrapper One ======*/}
         <div className="hero-wrapper-two">
+          {/*====== Hero Slider ======*/}
           <Slider {...sliderProps.heroOne} className="hero-slider-one">
+            {/*====== Single Slider ======*/}
             <div className="single-slider">
               <div
                 className="image-layer bg_cover"
                 style={{
-                  backgroundImage: "url(assets/images/hero/hero1.png)",
+                  backgroundImage:
+                    "url(assets/images/hero/hero1.png)",
                 }}
               />
               <div className="container">
                 <div className="row align-items-center">
                   <div className="col-xl-6 col-lg-8">
+                    {/*====== Hero Content ======*/}
                     <div className="hero-content">
                       <span
                         className="sub-title"
@@ -185,19 +42,9 @@ const Index2 = () => {
                       >
                         Transforming Gardens Into
                       </span>
-
                       <h1 data-animation="fadeInDown" data-delay=".5s">
-                        {heroTitle}
+                        Timeless Spaces in Salford
                       </h1>
-
-                      <p
-                        data-animation="fadeInUp"
-                        data-delay=".58s"
-                        style={{ maxWidth: "640px" }}
-                      >
-                        {heroSubtext}
-                      </p>
-
                       <div
                         className="hero-button mb-30"
                         data-animation="fadeInDown"
@@ -214,7 +61,6 @@ const Index2 = () => {
                           </a>
                         </Link>
                       </div>
-
                       <div
                         className="client-avatar-box"
                         data-animation="fadeInUp"
@@ -271,24 +117,11 @@ const Index2 = () => {
                           </ul>
                         </div>
                         <div className="text">
-                          <span>Client Reviews</span>
+                          <span>Clients Reviews</span>
                         </div>
                       </div>
-
-                      {locationSource !== "default" && (
-                        <p
-                          style={{
-                            marginTop: "18px",
-                            fontSize: "14px",
-                            opacity: 0.85,
-                          }}
-                        >
-                          Showing content tailored to {activeLocation?.name}
-                        </p>
-                      )}
                     </div>
                   </div>
-
                   <div className="col-xl-6 col-lg-4">
                     {/*====== Hero Play ======*/}
                     {/*======<div className="hero-play float-lg-right">
@@ -307,12 +140,12 @@ const Index2 = () => {
         </div>
       </section>
       {/*====== End Banner Section ======*/}
-
-      {/*====== Start Features Section ======*/}
+      {/*====== Start Features Section  ======*/}
       <section className="features-section gray-bg pt-60 pb-20">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-4 col-md-6">
+              {/*====== Features Thumb Item  ======*/}
               <div
                 className="features-thumb-item mb-40 wow fadeInDown"
                 data-wow-delay=".2s"
@@ -326,17 +159,15 @@ const Index2 = () => {
                   </div>
                   <div className="content">
                     <h5 className="title">Garden Design</h5>
-                    <Link legacyBehavior href="/service-gardenDesign">
-                      <a className="icon-btn">
-                        <i className="far fa-long-arrow-right" />
-                      </a>
-                    </Link>
+                    <a href="/service-gardenDesign" className="icon-btn">
+                      <i className="far fa-long-arrow-right" />
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
-
             <div className="col-xl-4 col-md-6">
+              {/*====== Features Thumb Item  ======*/}
               <div
                 className="features-thumb-item mb-40 wow fadeInUp"
                 data-wow-delay=".3s"
@@ -350,17 +181,15 @@ const Index2 = () => {
                   </div>
                   <div className="content">
                     <h5 className="title">Landscaping</h5>
-                    <Link legacyBehavior href="/service-walls-turfing">
-                      <a className="icon-btn">
-                        <i className="far fa-long-arrow-right" />
-                      </a>
-                    </Link>
+                    <a href="service-walls-turfing" className="icon-btn">
+                      <i className="far fa-long-arrow-right" />
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
-
             <div className="col-xl-4 col-md-6">
+              {/*====== Features Thumb Item  ======*/}
               <div
                 className="features-thumb-item mb-40 wow fadeInDown"
                 data-wow-delay=".4s"
@@ -374,11 +203,9 @@ const Index2 = () => {
                   </div>
                   <div className="content">
                     <h5 className="title">Driveways</h5>
-                    <Link legacyBehavior href="/service-driveways">
-                      <a className="icon-btn">
-                        <i className="far fa-long-arrow-right" />
-                      </a>
-                    </Link>
+                    <a href="service-driveways" className="icon-btn">
+                      <i className="far fa-long-arrow-right" />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -386,9 +213,8 @@ const Index2 = () => {
           </div>
         </div>
       </section>
-      {/*====== End Features Section ======*/}
-
-      {/*====== Start Choose Section ======*/}
+      {/*====== End Features Section  ======*/}
+      {/*====== Start Choose Section  ======*/}
       <section
         className="choose-bg-section bg_cover p-r z-1 pt-100 pb-100"
         style={{ backgroundImage: "url(assets/images/bg/choose-bg-1.jpg)" }}
@@ -396,38 +222,34 @@ const Index2 = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-9 col-lg-12">
+              {/*====== Section Title  ======*/}
               <div className="section-title text-white text-center mb-50 wow fadeInDown">
                 <span className="sub-title">
                   <i className="flaticon-plant" />
                   Why Choose Us
                 </span>
-                <h2>We&apos;re An Award Winning Establishment!</h2>
+                <h2>We're An Award Winning Establishment!</h2>
               </div>
             </div>
           </div>
-
           <div className="row">
             <div className="col-lg-12">
+              {/*====== Choose Wrapper  ======*/}
               <div className="choose-wrapper wow fadeInUp">
                 <div className="row">
                   <div className="col-lg-7">
+                    {/*====== Choose Tab Pane  ======*/}
                     <Tab.Container defaultActiveKey={"tab1"}>
                       <div className="choose-tab-pane">
+                        {/*====== Choose Tab  ======*/}
                         <div className="choose-nav-tab">
                           <Nav as={"ul"} className="nav">
+                            
                             <li className="nav-item">
                               <Nav.Link
                                 as="button"
                                 className="nav-link"
-                                eventKey="tab1"
-                              >
-                                Award Winning
-                              </Nav.Link>
-                            </li>
-                            <li className="nav-item">
-                              <Nav.Link
-                                as="button"
-                                className="nav-link"
+                                data-toggle="tab"
                                 eventKey="tab2"
                               >
                                 Lifetime Guarantee
@@ -435,18 +257,12 @@ const Index2 = () => {
                             </li>
                           </Nav>
                         </div>
-
+                        {/*====== Tab Content  ======*/}
                         <Tab.Content className="tab-content">
                           <Tab.Pane className="tab-pane" eventKey="tab1">
                             <div className="choose-content-box">
                               <p>
-                                Recognition in the landscaping industry doesn’t
-                                come easy - it takes passion, dedication, and a
-                                commitment to quality. That’s why we’re proud to
-                                have recently won an award through the Pro
-                                Landscaper Project Awards 2025, a testament to
-                                the hard work and craftsmanship of our team.
-                              </p>
+                                Recognition in the landscaping industry doesn’t come easy - it takes passion, dedication, and a commitment to quality. That’s why we’re proud to have recently won an award through the Pro Landscaper Project Awards 2025, a testament to the hard work and craftsmanship of our team.                              </p>
                               <div className="thumb-content">
                                 <img
                                   src="assets/images/gallery/choose-2.jpg"
@@ -467,25 +283,16 @@ const Index2 = () => {
                                   </li>
                                   <li>
                                     <i className="far fa-check" />
-                                    Craftsmanship Approved by the Association of
-                                    Professional Landscapers
+                                    Craftsmanship Aproved by the Association of Professional Landscapers
                                   </li>
                                 </ul>
                               </div>
                             </div>
                           </Tab.Pane>
-
                           <Tab.Pane className="tab-pane" eventKey="tab2">
                             <div className="choose-content-box">
                               <p>
-                                This award reflects not only the creativity we
-                                bring to each design but also the trust our
-                                clients place in us to deliver stunning outdoor
-                                transformations. Whether it’s a full garden
-                                redesign or a bespoke feature such as a water
-                                element or decking, our award proves that
-                                excellence is at the heart of everything we do.
-                              </p>
+                                This award reflects not only the creativity we bring to each design but also the trust our clients place in us to deliver stunning outdoor transformations. Whether it’s a full garden redesign or a bespoke feature such as a water element or decking, our award proves that excellence is at the heart of everything we do.                              </p>
                               <div className="thumb-content">
                                 <img
                                   src="assets/images/gallery/choose-3.jpg"
@@ -516,8 +323,8 @@ const Index2 = () => {
                       </div>
                     </Tab.Container>
                   </div>
-
                   <div className="col-lg-5">
+                    {/*====== Choose Image Box  ======*/}
                     <div className="choose-image-box">
                       <img
                         src="assets/images/gallery/choose-1.jpg"
@@ -531,13 +338,13 @@ const Index2 = () => {
           </div>
         </div>
       </section>
-      {/*====== End Choose Section ======*/}
-
-      {/*====== Start About Section ======*/}
+      {/*====== End Choose Section  ======*/}
+      {/*====== Start About Section  ======*/}
       <section className="about-section pt-100 pb-50">
         <div className="container">
           <div className="row align-items-xl-center">
             <div className="col-xl-6">
+              {/*====== About Image Box  ======*/}
               <div className="about-one_image-box mb-50 p-r z-1 wow fadeInLeft">
                 <div className="shape shape-one">
                   <span />
@@ -565,26 +372,18 @@ const Index2 = () => {
                 </div>
               </div>
             </div>
-
             <div className="col-xl-6">
+              {/*====== About Content Box  ======*/}
               <div className="about-content-box pl-lg-60 mb-50 wow fadeInRight">
                 <div className="section-title mb-30">
                   <span className="sub-title">
                     <i className="flaticon-plant" />
-                    Luxury &amp; Longevity
+                    Luxury & Longevity
                   </span>
                   <h2>Refined Design &amp; Lasting Quality.</h2>
                 </div>
                 <p className="mb-30">
-                  For over 10 years, Adam and his team have been transforming
-                  outdoor spaces with exceptional garden design and premium
-                  paving services. As the #1 landscapers in the area, we take
-                  pride in creating stunning patios, pathways, and gardens that
-                  our clients love. From the very first sketch through to the
-                  final finishing touches, we take care of every detail,
-                  ensuring your project runs smoothly and results in a space
-                  you’ll love for years to come.
-                </p>
+                  For over 10 years, Adam and his team have been transforming outdoor spaces with exceptional garden design and premium paving services. As the #1 landscapers in the area, we take pride in creating stunning patios, pathways, and gardens that our clients love. From the very first sketch through to the final finishing touches, we take care of every detail, ensuring your project runs smoothly and results in a space you’ll love for years to come.                </p>
                 <ul className="check-style-one mb-35">
                   <li>
                     <i className="far fa-check" />
@@ -603,8 +402,7 @@ const Index2 = () => {
           </div>
         </div>
       </section>
-      {/*====== End About Section ======*/}
-
+      {/*====== End About Section  ======*/}
       {/*====== Start Working Process Section ======*/}
       <section className="working-process-section pt-100 pb-100">
         <div className="container">
@@ -615,68 +413,60 @@ const Index2 = () => {
                   <i className="flaticon-plant" />
                   Working Process
                 </span>
-                <h2>From First Sketch To Final Finish</h2>
+                <h2>From First sketch To Final Finish</h2>
               </div>
             </div>
           </div>
-
           <div className="working-process-wrapper wow fadeInUp">
             <div className="row no-lg-gutters">
+              {/*====== Working Process Wrapper ======*/}
               <div className="col-lg-3 col-md-6">
+                {/*====== Single Process Item ======*/}
                 <div className="single-process-item">
                   <div className="inner-process-item">
+                    <div className="step">Step 01</div>
                     <div className="text">
                       <h4 className="title">Consultation</h4>
-                      <p>
-                        We listen to your ideas, goals, and requirements to
-                        shape a vision for your space.
-                      </p>
+                      <p>We listen to your ideas, goals, and requirements to shape a vision for your space.</p>
                       <img src="assets/images/line.png" alt="Line" />
                     </div>
                   </div>
                 </div>
               </div>
-
               <div className="col-lg-3 col-md-6">
+                {/*====== Single Process Item ======*/}
                 <div className="single-process-item">
                   <div className="inner-process-item">
+                    <div className="step">Step 02</div>
                     <div className="text">
-                      <h4 className="title">Design &amp; Presentation</h4>
-                      <p>
-                        Creative concepts are developed and presented so you can
-                        see how your garden will take shape.
-                      </p>
+                      <h4 className="title">Design &amp; presentation</h4>
+                      <p>Creative concepts are developed and presented so you can see how your garden will take shape.</p>
                       <img src="assets/images/line.png" alt="Line" />
                     </div>
                   </div>
                 </div>
               </div>
-
               <div className="col-lg-3 col-md-6">
+                {/*====== Single Process Item ======*/}
                 <div className="single-process-item">
                   <div className="inner-process-item">
+                    <div className="step">Step 03</div>
                     <div className="text">
-                      <h4 className="title">Preparation &amp; Build</h4>
-                      <p>
-                        Our skilled team handles everything, from groundwork to
-                        construction, delivering your project with precision.
-                      </p>
+                      <h4 className="title">Preperation &amp; Build</h4>
+                      <p>Our skilled team handles everything, from groundwork to construction, delivering your project with precision.</p>
                       <img src="assets/images/line.png" alt="Line" />
                     </div>
                   </div>
                 </div>
               </div>
-
               <div className="col-lg-3 col-md-6">
+                {/*====== Single Process Item ======*/}
                 <div className="single-process-item">
                   <div className="inner-process-item">
+                    <div className="step">Step 04</div>
                     <div className="text">
                       <h4 className="title">Sign Off &amp; Aftercare</h4>
-                      <p>
-                        Once complete, we make sure you’re 100% happy, providing
-                        aftercare package &amp; advice to keep your garden
-                        looking its best.
-                      </p>
+                      <p>Once complete, we make sure you’re 100% happy, providing aftercare package &amp; advice to keep your garden looking its best.</p>
                       <img src="assets/images/line.png" alt="Line" />
                     </div>
                   </div>
@@ -684,25 +474,291 @@ const Index2 = () => {
               </div>
             </div>
           </div>
-
-          {activeLocation?.slug && (
-            <div className="text-center" style={{ marginTop: "40px" }}>
-              <Link legacyBehavior href='/about'>
-                <a className="main-btn primary-btn">
-                  Explore landscaping in {activeLocation.name}
-                </a>
-              </Link>
-            </div>
-          )}
         </div>
       </section>
       {/*====== End Working Process Section ======*/}
+      {/*====== Start Gallery Section 
+      <section className="gallery-section-minus p-r z-2">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6">
+              {/*====== Section Title 
+              <div className="section-title mb-50 pr-lg-70 wow fadeInLeft">
+                <span className="sub-title">
+                  <i className="flaticon-plant" />
+                  Photo Gallery
+                </span>
+                <h2>View Proven Work</h2>
+              </div>
+            </div>
+            <div className="col-lg-6">
+              {/*====== Project Content Box 
+              <div className="project-content-box mb-50 pl-lg-100 wow fadeInRight">
+                <p className="mb-35">
+                  Every garden we design tells its own story. From contemporary courtyards to large family spaces, our portfolio showcases the diversity of projects we’ve delivered and the pride we take in every finish. Our projects highlight the creativity of our designs, the quality of our materials, and the expertise of our team.
 
-      {/*====== Start Features Section ======*/}
+                </p>
+                <Link legacyBehavior href="/project-grid-2-column">
+                  <a className="main-btn golden-btn">View More Projects</a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+        <Slider
+          {...sliderProps.projectsSliderOne}
+          className="projects-slider-one wow fadeInDown"
+        >
+          {/*====== Single Gallery Item 
+          <div className="single-project-item">
+            <div className="project-img">
+              <img src="assets/images/gallery/gl-1.jpg" alt="Gallery Image" />
+              <div className="hover-content">
+                <div className="text text-white">
+                  <h3 className="title">
+                    <Link legacyBehavior href="/project-details">
+                      <a>Take Care Garden Trees</a>
+                    </Link>
+                  </h3>
+                  <a href="#">Gardening &amp; Landscape</a>
+                </div>
+                <Link legacyBehavior href="/project-details">
+                  <a className="icon-btn">
+                    <i className="fal fa-long-arrow-right" />
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/*====== Single Gallery Item 
+          <div className="single-project-item">
+            <div className="project-img">
+              <img src="assets/images/gallery/gl-2.jpg" alt="Gallery Image" />
+              <div className="hover-content">
+                <div className="text text-white">
+                  <h3 className="title">
+                    <Link legacyBehavior href="/project-details">
+                      <a>Take Care Garden Trees</a>
+                    </Link>
+                  </h3>
+                  <a href="#">Gardening &amp; Landscape</a>
+                </div>
+                <Link legacyBehavior href="/project-details">
+                  <a className="icon-btn">
+                    <i className="fal fa-long-arrow-right" />
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/*====== Single Gallery Item 
+          <div className="single-project-item">
+            <div className="project-img">
+              <img src="assets/images/gallery/gl-3.jpg" alt="Gallery Image" />
+              <div className="hover-content">
+                <div className="text text-white">
+                  <h3 className="title">
+                    <Link legacyBehavior href="/project-details">
+                      <a>Take Care Garden Trees</a>
+                    </Link>
+                  </h3>
+                  <a href="#">Gardening &amp; Landscape</a>
+                </div>
+                <Link legacyBehavior href="/project-details">
+                  <a className="icon-btn">
+                    <i className="fal fa-long-arrow-right" />
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/*====== Single Gallery Item 
+          <div className="single-project-item">
+            <div className="project-img">
+              <img src="assets/images/gallery/pic1.jpg" alt="Gallery Image" />
+              <div className="hover-content">
+                <div className="text text-white">
+                  <h3 className="title">
+                    <Link legacyBehavior href="/project-details">
+                      <a>Take Care Garden Trees</a>
+                    </Link>
+                  </h3>
+                  <a href="#">Gardening &amp; Landscape</a>
+                </div>
+                <Link legacyBehavior href="/project-details">
+                  <a className="icon-btn">
+                    <i className="fal fa-long-arrow-right" />
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/*====== Single Gallery Item 
+          <div className="single-project-item">
+            <div className="project-img">
+              <img src="assets/images/gallery/pic2.jpg" alt="Gallery Image" />
+              <div className="hover-content">
+                <div className="text text-white">
+                  <h3 className="title">
+                    <Link legacyBehavior href="/project-details">
+                      <a>Take Care Garden Trees</a>
+                    </Link>
+                  </h3>
+                  <a href="#">Gardening &amp; Landscape</a>
+                </div>
+                <Link legacyBehavior href="/project-details">
+                  <a className="icon-btn">
+                    <i className="fal fa-long-arrow-right" />
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/*====== Single Gallery Item 
+          <div className="single-project-item">
+            <div className="project-img">
+              <img src="assets/images/gallery/pic3.jpg" alt="Gallery Image" />
+              <div className="hover-content">
+                <div className="text text-white">
+                  <h3 className="title">
+                    <Link legacyBehavior href="/project-details">
+                      <a>Take Care Garden Trees</a>
+                    </Link>
+                  </h3>
+                  <a href="#">Gardening &amp; Landscape</a>
+                </div>
+                <Link legacyBehavior href="/project-details">
+                  <a className="icon-btn">
+                    <i className="fal fa-long-arrow-right" />
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/*====== Single Gallery Item 
+          <div className="single-project-item">
+            <div className="project-img">
+              <img src="assets/images/gallery/pic4.jpg" alt="Gallery Image" />
+              <div className="hover-content">
+                <div className="text text-white">
+                  <h3 className="title">
+                    <Link legacyBehavior href="/project-details">
+                      <a>Take Care Garden Trees</a>
+                    </Link>
+                  </h3>
+                  <a href="#">Gardening &amp; Landscape</a>
+                </div>
+                <Link legacyBehavior href="/project-details">
+                  <a className="icon-btn">
+                    <i className="fal fa-long-arrow-right" />
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/*====== Single Gallery Item 
+          <div className="single-project-item">
+            <div className="project-img">
+              <img src="assets/images/gallery/pic5.jpg" alt="Gallery Image" />
+              <div className="hover-content">
+                <div className="text text-white">
+                  <h3 className="title">
+                    <Link legacyBehavior href="/project-details">
+                      <a>Take Care Garden Trees</a>
+                    </Link>
+                  </h3>
+                  <a href="#">Gardening &amp; Landscape</a>
+                </div>
+                <Link legacyBehavior href="/project-details">
+                  <a className="icon-btn">
+                    <i className="fal fa-long-arrow-right" />
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Slider>
+      </section>
+      {/*====== End Gallery Section 
+      {/*====== Start Counter Section  
+      <section className="fact-bg-section p-r z-1 main-bg pb-160">
+        <div className="circle-wrapper">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-3 col-md-6 col-sm-6 single-counter-column">
+              {/*====== Counter Item  
+              <div
+                className="single-counter-item mb-30 wow fadeInDown"
+                data-wow-delay=".2s"
+              >
+                <div className="icon">
+                  <i className="fal fa-long-arrow-right" />
+                </div>
+                <h2 className="number">
+                  <Counter end={56} />+
+                </h2>
+                <p>Projects Complete</p>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-6 single-counter-column">
+              {/*====== Counter Item  
+              <div
+                className="single-counter-item mb-30 wow fadeInUp"
+                data-wow-delay=".25s"
+              >
+                <div className="icon">
+                  <i className="fal fa-long-arrow-right" />
+                </div>
+                <h2 className="number">
+                  <Counter end={99} />%
+                </h2>
+                <p>Satisfactions Rate</p>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-6 single-counter-column">
+              {/*====== Counter Item  
+              <div
+                className="single-counter-item mb-30 wow fadeInDown"
+                data-wow-delay=".3s"
+              >
+                <div className="icon">
+                  <i className="fal fa-long-arrow-right" />
+                </div>
+                <h2 className="number">
+                  <Counter end={4} />
+                </h2>
+                <p>Steps To Complete Your Project</p>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-6 single-counter-column">
+              {/*====== Counter Item  
+              <div
+                className="single-counter-item mb-30 wow fadeInUp"
+                data-wow-delay=".35s"
+              >
+                <div className="icon">
+                  <i className="fal fa-long-arrow-right" />
+                </div>
+                <h2 className="number">
+                  <Counter end={1} />
+                </h2>
+                <p>Team Fit For The Job</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/*====== End Counter Section  ======*/}
+      {/*====== Start Features Section  ======*/}
       <section className="features-section pt-70 p-r z-2">
         <div className="container">
           <div className="row align-items-lg-center">
             <div className="col-xl-6">
+              {/*====== Features Image Box ======*/}
               <div className="features-one_image-box mb-50 wow fadeInLeft">
                 <img
                   src="assets/images/features/features-4.png"
@@ -710,8 +766,8 @@ const Index2 = () => {
                 />
               </div>
             </div>
-
             <div className="col-xl-6">
+              {/*====== Features Content Box ======*/}
               <div className="features-content-box pl-lg-40 mb-50 wow fadeInRight">
                 <div className="section-title mb-20">
                   <span className="sub-title">
@@ -721,38 +777,31 @@ const Index2 = () => {
                   <h2>Complete Garden Transformations</h2>
                 </div>
                 <p className="mb-30">
-                  Harris Landscapes is a design-led landscaping company that
-                  helps our trusting customers achieve their dream garden
-                  transformations without the stress of planning and organising
-                  the operation yourselves.
+                  Harris Landscapes is a Design led landscaping company that helps our trusting customers achieve their dream garden transformations without the stress of planning and organising the operation yourselves.
                 </p>
                 <div className="row no-gutters">
                   <div className="col-lg-6">
+                    {/*====== Fancy Icon Box ======*/}
                     <div className="fancy-icon-box">
                       <div className="text">
                         <h5 className="title">
                           Design &amp; Visualisation
                         </h5>
-                        <p>
-                          We bring material samples and sketches to you. Then we
-                          construct digital images of your garden so you can
-                          visualise the finished design.
-                        </p>
+                        <p>We bring material samples and sketches to you. Then we construct digital images of your garden so you can visualise the finished design.</p>
                       </div>
                     </div>
                   </div>
-
                   <div className="col-lg-6">
+                    {/*====== Fancy Icon Box ======*/}
                     <div className="fancy-icon-box">
                       <div className="text">
-                        <h5 className="title">Build &amp; Craftsmanship</h5>
-                        <p>
-                          With a decade of experience and a commitment to
-                          quality, we’ve earned a reputation as the leaders in
-                          landscaping. Just look at our award winning projects.
-                        </p>
+                        <h5 className="title">
+                          Build &amp; Craftsmanship
+                        </h5>
+                        <p>With a decade of experience and a commitment to quality, we’ve earned a reputation as the leaders in landscaping. Just look at our award winning projects.</p>
                       </div>
                     </div>
+                    
                   </div>
                 </div>
               </div>
@@ -760,9 +809,8 @@ const Index2 = () => {
           </div>
         </div>
       </section>
-      {/*====== End Features Section ======*/}
-
-      {/*====== Start Testimonial Section ======*/}
+      {/*====== End Features Section  ======*/}
+      {/*====== Start Testimonial Section  ======*/}
       <section className="testimonial-section pt-100 pb-100">
         <div className="container">
           <div className="row justify-content-center">
@@ -776,11 +824,12 @@ const Index2 = () => {
               </div>
             </div>
           </div>
-
+          {/*====== Testimonial Slider  ======*/}
           <Slider
             {...sliderProps.testimonialSliderOne}
             className="testimonial-slider-one wow fadeInUp"
           >
+            {/*====== Testimonial Item  ======*/}
             <div className="single-testimonial-item">
               <div className="testimonial-inner-content">
                 <div className="quote-rating-box">
@@ -793,18 +842,26 @@ const Index2 = () => {
                   <div className="ratings-box">
                     <h6>Excellent Services</h6>
                     <ul className="ratings">
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
                     </ul>
                   </div>
                 </div>
                 <p>
-                  Thank you, Adam and the team, for all the hard work and
-                  excellent teamwork for our garden design and renovation.
-                  Superb service and quality craftsmanship throughout.
+                  Thank you, Adam and the team, for all the hard work and excellent teamwork for our garden design and renovation. Superb service and quality craftsmanship throughout.
                 </p>
                 <div className="author-thumb-title">
                   <div className="author-title">
@@ -814,7 +871,7 @@ const Index2 = () => {
                 </div>
               </div>
             </div>
-
+            {/*====== Testimonial Item  ======*/}
             <div className="single-testimonial-item">
               <div className="testimonial-inner-content">
                 <div className="quote-rating-box">
@@ -827,20 +884,26 @@ const Index2 = () => {
                   <div className="ratings-box">
                     <h6>Excellent Services</h6>
                     <ul className="ratings">
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
                     </ul>
                   </div>
                 </div>
                 <p>
-                  After having our patio done by Adam and Joe we asked them to
-                  come back to complete the rest of our garden and we’re so
-                  happy with the transformation. They did a fantastic job and
-                  everything was finished to such a high standard. Can’t wait to
-                  enjoy our beautiful garden.
+                  After having our patio done by Adam and Joe we asked them to come back to complete the rest of our garden and we’re so happy with the transformation! They did a fantastic job and everything was finished to such a high standard. Can’t wait to enjoy our beautiful garden.
                 </p>
                 <div className="author-thumb-title">
                   <div className="author-title">
@@ -850,7 +913,7 @@ const Index2 = () => {
                 </div>
               </div>
             </div>
-
+            {/*====== Testimonial Item  ======*/}
             <div className="single-testimonial-item">
               <div className="testimonial-inner-content">
                 <div className="quote-rating-box">
@@ -863,20 +926,26 @@ const Index2 = () => {
                   <div className="ratings-box">
                     <h6>Excellent Services</h6>
                     <ul className="ratings">
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
                     </ul>
                   </div>
                 </div>
                 <p>
-                  Transformed our garden completely. Adam and team have a truly
-                  impressive work ethic and I would recommend to anyone. I am
-                  really grateful and delighted with the decision to employ
-                  Harris Landscapes. Adam listened to our brief and delivered
-                  x10, top lads!
+                  Transformed our garden completely. Adam and team have a truly impressive work ethic and I would recommend to anyone. I am really grateful and delighted with the decision to employ Harris Landscapes. Adam listened to our brief and delivered x10, top lads!
                 </p>
                 <div className="author-thumb-title">
                   <div className="author-title">
@@ -886,7 +955,7 @@ const Index2 = () => {
                 </div>
               </div>
             </div>
-
+            {/*====== Testimonial Item  ======*/}
             <div className="single-testimonial-item">
               <div className="testimonial-inner-content">
                 <div className="quote-rating-box">
@@ -899,18 +968,26 @@ const Index2 = () => {
                   <div className="ratings-box">
                     <h6>Excellent Services</h6>
                     <ul className="ratings">
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
-                      <li><i className="fas fa-star" /></li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
+                      <li>
+                        <i className="fas fa-star" />
+                      </li>
                     </ul>
                   </div>
                 </div>
                 <p>
-                  Adam and Joe built me some raised beds and hard standing in my
-                  back garden. They did an excellent job and are really nice
-                  people who are a pleasure to have working at your house.
+                  Adam and Joe built me some raised beds and hard standing in my back garden. They did and excellent job and are really nice People who are a pleasure to have working at your house
                 </p>
                 <div className="author-thumb-title">
                   <div className="author-title">
@@ -923,9 +1000,8 @@ const Index2 = () => {
           </Slider>
         </div>
       </section>
-      {/*====== End Testimonial Section ======*/}
-
-      {/*====== Start CTA Section ======*/}
+      {/*====== End Testimonial Section  ======*/}
+      {/*====== Start CTA Section  ======*/}
       <section
         className="cta-bg-section bg_cover pt-100 pb-50 p-r z-1"
         style={{ backgroundImage: "url(assets/images/bg/cta-bg-1.jpg)" }}
@@ -933,6 +1009,7 @@ const Index2 = () => {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-5">
+              {/*======  CTA Content Box  ======*/}
               <div className="cta-content-box text-white mb-50 wow fadeInLeft">
                 <div className="section-title mb-20">
                   <span className="sub-title">
@@ -942,16 +1019,15 @@ const Index2 = () => {
                   <h2>Book a Private Consultation</h2>
                 </div>
                 <p className="mb-35">
-                  Industry recognised designs, delivered with clear process and
-                  total accountability.
+                  Industry recognised designs, delivered with clear process and total accountability.
                 </p>
                 <Link legacyBehavior href="/contact">
                   <a className="main-btn golden-btn">Find A Specialist</a>
                 </Link>
               </div>
             </div>
-
             <div className="col-lg-7">
+              {/*======  CTA Image Box  ======*/}
               <div className="cta-image-box mb-50 wow fadeInRight">
                 <img src="assets/images/gallery/cta-1.jpg" alt="Image" />
               </div>
@@ -959,9 +1035,8 @@ const Index2 = () => {
           </div>
         </div>
       </section>
-      {/*====== End CTA Section ======*/}
-
-      {/*====== Start Blog Section ======*/}
+      {/*====== End CTA Section  ======*/}
+      {/*====== Start Blog Section  ======*/}
       <section className="blog-section pt-100 pb-60">
         <div className="container">
           <div className="row justify-content-center">
@@ -975,9 +1050,9 @@ const Index2 = () => {
               </div>
             </div>
           </div>
-
           <div className="row justify-content-center">
             <div className="col-xl-4 col-md-6 col-sm-12">
+              {/*====== Single Blog Post  ======*/}
               <div
                 className="single-blog-post mb-40 wow fadeInUp"
                 data-wow-delay=".2s"
@@ -1017,9 +1092,7 @@ const Index2 = () => {
                     </Link>
                   </h4>
                   <p>
-                    Many homeowners see a driveway as a simple surface. If it
-                    looks neat and supports a vehicle, it feels fit for purpose.
-                    In reality, poor driveway design is...
+                    Many homeowners see a driveway as a simple surface. If it looks neat and supports a vehicle, it feels fit for purpose. In reality, poor driveway design is...
                   </p>
                   <div className="post-meta">
                     <span className="date">
@@ -1031,8 +1104,8 @@ const Index2 = () => {
                 </div>
               </div>
             </div>
-
             <div className="col-xl-4 col-md-6 col-sm-12">
+              {/*====== Single Blog Post  ======*/}
               <div
                 className="single-blog-post mb-40 wow fadeInDown"
                 data-wow-delay=".25s"
@@ -1068,16 +1141,11 @@ const Index2 = () => {
                   </Link>
                   <h4 className="entry-title">
                     <Link legacyBehavior href="/blog-details">
-                      <a>
-                        7 Small Garden Design Ideas that Feel Spacious and
-                        Luxurious
-                      </a>
+                      <a>7 Small Garden Design Ideas that Feel Spacious and Luxurious</a>
                     </Link>
                   </h4>
                   <p>
-                    One of the biggest misconceptions homeowners have is that a
-                    small garden limits what’s possible. In reality, some of the
-                    most elegant...
+                    One of the biggest misconceptions homeowners have is that a small garden limits what’s possible. In reality, some of the most elegant...
                   </p>
                   <div className="post-meta">
                     <span className="date">
@@ -1089,8 +1157,8 @@ const Index2 = () => {
                 </div>
               </div>
             </div>
-
             <div className="col-xl-4 col-md-6 col-sm-12">
+              {/*====== Single Blog Post  ======*/}
               <div
                 className="single-blog-post mb-40 wow fadeInUp"
                 data-wow-delay=".3s"
@@ -1126,16 +1194,11 @@ const Index2 = () => {
                   </Link>
                   <h4 className="entry-title">
                     <Link legacyBehavior href="/blog-details">
-                      <a>
-                        A Refined Porcelain Patio and Lawn Garden for a Terraced
-                        Home in Bolton
-                      </a>
+                      <a>A Refined Porcelain Patio and Lawn Garden for a Terraced Home in Bolton</a>
                     </Link>
                   </h4>
                   <p>
-                    Small terraced gardens are often underestimated. Many
-                    homeowners assume that limited space means limited
-                    potential...
+                    Small terraced gardens are often underestimated. Many homeowners assume that limited space means limited potential...
                   </p>
                   <div className="post-meta">
                     <span className="date">
@@ -1150,9 +1213,7 @@ const Index2 = () => {
           </div>
         </div>
       </section>
-      {/*====== End Blog Section ======*/}
     </Layout>
   );
 };
-
 export default Index2;
